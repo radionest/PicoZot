@@ -43,6 +43,7 @@ module.exports = (env, argv) => {
       new CopyWebpackPlugin({
         patterns: [
           { from: 'manifest.json', to: '.' },
+          { from: 'bootstrap.js', to: '.' }, // Add bootstrap.js to the output
           { from: 'resources', to: 'resources' },
           { from: 'locale', to: 'locale' }
         ]

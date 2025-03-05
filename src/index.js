@@ -39,6 +39,13 @@ function init() {
 // Initialize the plugin when the window loads
 window.addEventListener('load', init);
 
+// Expose the plugin to the global scope for Zotero
+if (typeof window !== 'undefined') {
+  window.PicoZot = {
+    init
+  };
+}
+
 // Export public API
 export default {
   init
