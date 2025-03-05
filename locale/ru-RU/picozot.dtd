@@ -1,0 +1,59 @@
+<!-- PicoZot - Плагин Zotero для PICO-анализа и обзора литературы -->
+<!-- Русская локализация -->
+
+<!-- Общее -->
+<!ENTITY picozot.name "PicoZot">
+<!ENTITY picozot.description "Плагин Zotero для PICO-анализа и генерации обзора литературы">
+
+<!-- Пункты меню -->
+<!ENTITY picozot.menu.label "PicoZot">
+<!ENTITY picozot.menu.analyze "Анализировать PICO-элементы">
+<!ENTITY picozot.menu.review "Создать обзор литературы">
+<!ENTITY picozot.menu.compare "Сравнить PICO-элементы">
+<!ENTITY picozot.menu.settings "Настройки">
+
+<!-- PICO-элементы -->
+<!ENTITY picozot.pico.population "Популяция/Проблема">
+<!ENTITY picozot.pico.intervention "Вмешательство">
+<!ENTITY picozot.pico.comparison "Сравнение">
+<!ENTITY picozot.pico.outcome "Исход">
+
+<!-- Заголовки диалогов -->
+<!ENTITY picozot.dialog.analysis "PICO-анализ">
+<!ENTITY picozot.dialog.review "Создание обзора литературы">
+<!ENTITY picozot.dialog.settings "Настройки PicoZot">
+
+<!-- Кнопки диалогов -->
+<!ENTITY picozot.button.analyze "Анализировать">
+<!ENTITY picozot.button.generate "Создать обзор">
+<!ENTITY picozot.button.save "Сохранить">
+<!ENTITY picozot.button.cancel "Отмена">
+<!ENTITY picozot.button.close "Закрыть">
+
+<!-- Настройки -->
+<!ENTITY picozot.settings.ai "Настройки ИИ">
+<!ENTITY picozot.settings.apiKey "API-ключ">
+<!ENTITY picozot.settings.model "Модель ИИ">
+<!ENTITY picozot.settings.ui "Настройки интерфейса">
+<!ENTITY picozot.settings.sidebar "Показывать боковую панель при запуске">
+
+<!-- Шаблоны -->
+<!ENTITY picozot.template.default "Стандартный шаблон">
+<!ENTITY picozot.template.systematic "Систематический обзор">
+
+<!-- Опции -->
+<!ENTITY picozot.options.combine "Объединить PICO-элементы из всех элементов">
+<!ENTITY picozot.options.save "Сохранить как документ">
+<!ENTITY picozot.options.instructions "Дополнительные инструкции">
+
+<!-- Результаты -->
+<!ENTITY picozot.results.title "Результаты анализа">
+<!ENTITY picozot.results.review "Созданный обзор">
+<!ENTITY picozot.results.similarities "Сходства">
+<!ENTITY picozot.results.differences "Различия">
+
+<!-- Ошибки -->
+<!ENTITY picozot.error.noItems "Не выбраны элементы">
+<!ENTITY picozot.error.noContent "Содержимое не найдено">
+<!ENTITY picozot.error.apiKey "Требуется API-ключ">
+<!ENTITY picozot.error.failed "Операция не удалась">

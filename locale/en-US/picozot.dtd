@@ -1,0 +1,59 @@
+<!-- PicoZot - Zotero plugin for PICO analysis and literature review -->
+<!-- English (US) Locale -->
+
+<!-- General -->
+<!ENTITY picozot.name "PicoZot">
+<!ENTITY picozot.description "A Zotero plugin for PICO analysis and literature review generation">
+
+<!-- Menu Items -->
+<!ENTITY picozot.menu.label "PicoZot">
+<!ENTITY picozot.menu.analyze "Analyze PICO Elements">
+<!ENTITY picozot.menu.review "Generate Literature Review">
+<!ENTITY picozot.menu.compare "Compare PICO Elements">
+<!ENTITY picozot.menu.settings "Settings">
+
+<!-- PICO Elements -->
+<!ENTITY picozot.pico.population "Population/Problem">
+<!ENTITY picozot.pico.intervention "Intervention">
+<!ENTITY picozot.pico.comparison "Comparison">
+<!ENTITY picozot.pico.outcome "Outcome">
+
+<!-- Dialog Titles -->
+<!ENTITY picozot.dialog.analysis "PICO Analysis">
+<!ENTITY picozot.dialog.review "Generate Literature Review">
+<!ENTITY picozot.dialog.settings "PicoZot Settings">
+
+<!-- Dialog Buttons -->
+<!ENTITY picozot.button.analyze "Analyze">
+<!ENTITY picozot.button.generate "Generate Review">
+<!ENTITY picozot.button.save "Save">
+<!ENTITY picozot.button.cancel "Cancel">
+<!ENTITY picozot.button.close "Close">
+
+<!-- Settings -->
+<!ENTITY picozot.settings.ai "AI Settings">
+<!ENTITY picozot.settings.apiKey "API Key">
+<!ENTITY picozot.settings.model "AI Model">
+<!ENTITY picozot.settings.ui "UI Settings">
+<!ENTITY picozot.settings.sidebar "Show sidebar on startup">
+
+<!-- Templates -->
+<!ENTITY picozot.template.default "Default Template">
+<!ENTITY picozot.template.systematic "Systematic Review">
+
+<!-- Options -->
+<!ENTITY picozot.options.combine "Combine PICO elements from all items">
+<!ENTITY picozot.options.save "Save as document">
+<!ENTITY picozot.options.instructions "Additional Instructions">
+
+<!-- Results -->
+<!ENTITY picozot.results.title "Analysis Results">
+<!ENTITY picozot.results.review "Generated Review">
+<!ENTITY picozot.results.similarities "Similarities">
+<!ENTITY picozot.results.differences "Differences">
+
+<!-- Errors -->
+<!ENTITY picozot.error.noItems "No items selected">
+<!ENTITY picozot.error.noContent "No content found">
+<!ENTITY picozot.error.apiKey "API key is required">
+<!ENTITY picozot.error.failed "Operation failed">
