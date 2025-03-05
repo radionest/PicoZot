@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "PicoZot",
-  "version": "1.0.0-alpha",
+  "version": "0.0.0",
   "description": "A Zotero plugin for PICO analysis and literature review generation",
   "author": "Denis Nesterov",
   "homepage_url": "https://github.com/radionest/picozot",
@@ -16,23 +16,8 @@
     "zotero": {
       "id": "picozot@example.com",
       "update_url": "https://github.com/radionest/picozot/updates.json",
-      "strict_min_version": "7.0",
+      "strict_min_version": "6.0",
       "strict_max_version": "7.*"
-    }
-  },
-  "permissions": {
-    "http://*/*": true,
-    "https://*/*": true
-  },
-  "content_scripts": [
-    {
-      "matches": ["chrome://zotero/content/zoteroPane.xhtml"],
-      "js": ["build/index.js"]
-    }
-  ],
-  "browser_specific_settings": {
-    "gecko": {
-      "id": "picozot@example.com"
     }
   }
 }

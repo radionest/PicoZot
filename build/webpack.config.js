@@ -49,7 +49,7 @@ module.exports = (env, argv) => {
       }),
       ...(isDevelopment ? [] : [
         new ZipPlugin({
-          filename: `${name}-${version}.xpi`,
+          filename: `${name}-${version}`,
           extension: 'xpi',
           path: '../'
         })
