@@ -14,11 +14,12 @@ async function startup({ id, version, rootURI }) {
   try {
     // Load the main script
     Services.scriptloader.loadSubScript(
-      rootURI + "index.js",
-      null,
-      "UTF-8"
-    );
+      rootURI + "index.js"
+    );} catch(e){
+      log("Error: Cant load index.js because of" + e)
+    }
     
+  try{
     // Initialize the plugin
     if (typeof PicoZot !== 'undefined' && PicoZot.init) {
       PicoZot.init({ id, version, rootURI });
@@ -34,7 +35,7 @@ async function startup({ id, version, rootURI }) {
       log("Error: PicoZot global object not found after loading index.js");
     }
   } catch (e) {
-    log("Error in PicoZot startup: " + e);
+    log("Error in PicoZot init: " + e);
   }
 }
 
