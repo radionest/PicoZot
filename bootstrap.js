@@ -1,11 +1,14 @@
+var rootURI;
 var { utils: Cu } = Components;
-var rootURI = __SCRIPT_URI_SPEC__.replace("bootstrap.js", "");
 
 // Import Zotero services
 Cu.import("resource://zotero/loader.jsm");
 
 // Define startup function
 function startup({ id, version, resourceURI }, reason) {
+  // Set rootURI based on resourceURI
+  rootURI = resourceURI.spec;
+  
   // Register resource protocol
   let handler = Services.io.getProtocolHandler("resource")
     .QueryInterface(Components.interfaces.nsIResProtocolHandler);
