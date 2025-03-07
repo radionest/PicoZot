@@ -1,63 +1,55 @@
-var rootURI;
-var { utils: Cu } = Components;
+var PicoZot;
 
-// Import Zotero services
-Cu.import("resource://zotero/loader.jsm");
+function log(msg) {
+  Zotero.debug("PicoZot: " + msg);
+}
 
-// Define startup function
-function startup({ id, version, resourceURI }, reason) {
-  // Set rootURI based on resourceURI
-  rootURI = resourceURI.spec;
-  
+function install() {
+  log("PicoZot installed");
+}
+
+async function startup({ id, version, rootURI }) {
+  log("Starting PicoZot");
+
   // Register resource protocol
-  let handler = Services.io.getProtocolHandler("resource")
-    .QueryInterface(Components.interfaces.nsIResProtocolHandler);
+  Services.scriptloader.loadSubScript(rootURI + "index.js");
   
-  handler.setSubstitution("picozot", resourceURI);
-  
-  // Wait for Zotero to be fully loaded
-  if (Zotero.initialized) {
-    initPicoZot();
+  // Initialize the plugin
+  if (typeof PicoZot !== 'undefined' && PicoZot.init) {
+    PicoZot.init({ id, version, rootURI });
+    if (PicoZot.addToAllWindows) {
+      PicoZot.addToAllWindows();
+    }
+    if (PicoZot.main) {
+      await PicoZot.main();
+    }
   } else {
-    let listener = {
-      onInit: function() {
-        Zotero.removeInitListener(listener);
-        initPicoZot();
-      }
-    };
-    Zotero.addInitListener(listener);
+    log("Error: PicoZot global object not found after loading index.js");
   }
 }
 
-// Initialize the plugin
-function initPicoZot() {
-  try {
-    // Load the main script
-    Services.scriptloader.loadSubScript(
-      rootURI + "index.js",
-      null,
-      "UTF-8"
-    );
-    
-    Zotero.debug("PicoZot initialized");
-  } catch (e) {
-    Zotero.debug("Error initializing PicoZot: " + e);
+function onMainWindowLoad({ window }) {
+  if (PicoZot && PicoZot.addToWindow) {
+    PicoZot.addToWindow(window);
   }
 }
 
-// Define shutdown function
-function shutdown({ id, version, resourceURI }, reason) {
-  if (reason === APP_SHUTDOWN) return;
-  
-  // Unregister resource alias
-  let handler = Services.io.getProtocolHandler("resource")
-    .QueryInterface(Components.interfaces.nsIResProtocolHandler);
-  
-  handler.setSubstitution("picozot", null);
+function onMainWindowUnload({ window }) {
+  if (PicoZot && PicoZot.removeFromWindow) {
+    PicoZot.removeFromWindow(window);
+  }
 }
 
-// Define install function
-function install(data, reason) {}
+function shutdown() {
+  log("Shutting down PicoZot");
+  
+  if (PicoZot && PicoZot.removeFromAllWindows) {
+    PicoZot.removeFromAllWindows();
+  }
+  
+  PicoZot = undefined;
+}
 
-// Define uninstall function
-function uninstall(data, reason) {}
+function uninstall() {
+  log("PicoZot uninstalled");
+}
