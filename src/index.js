@@ -13,8 +13,7 @@ var PicoZot = {
     
     // Import PicoZot modules
     this.utils = {
-      logger: {},
-      config: {}
+      logger: {}
     };
     
     this.services = {
@@ -30,7 +29,7 @@ var PicoZot = {
     };
     
     // Initialize logger
-    if (typeof Zotero.debug === 'function') {
+    if (typeof Zotero !== 'undefined') {
       this.utils.logger.debug = function(msg) { Zotero.debug("PicoZot: " + msg); };
       this.utils.logger.info = function(msg) { Zotero.debug("PicoZot: " + msg); };
       this.utils.logger.warn = function(msg) { Zotero.debug("PicoZot: " + msg); };
@@ -42,18 +41,22 @@ var PicoZot = {
   
   // Add UI to all Zotero windows
   addToAllWindows: function() {
+    try {
     // Get all currently open windows
     var windows = Zotero.getMainWindows();
     for (let win of windows) {
       this.addToWindow(win);
+      }
+    } catch (e) {
+      Zotero.debug("PicoZot error in addToAllWindows: " + e);
     }
   },
   
   // Add UI elements to a Zotero window
   addToWindow: function(window) {
-    if (!window || !window.document) return;
-    
     try {
+      if (!window || !window.document) return;
+      
       // Add UI components
       this.addMenuItems(window);
       this.createSidebar(window);
@@ -64,20 +67,24 @@ var PicoZot = {
   
   // Remove UI from all Zotero windows
   removeFromAllWindows: function() {
+    try {
     var windows = Zotero.getMainWindows();
     for (let win of windows) {
       this.removeFromWindow(win);
+      }
+    } catch (e) {
+      Zotero.debug("PicoZot error in removeFromAllWindows: " + e);
     }
   },
   
   // Remove UI elements from a Zotero window
   removeFromWindow: function(window) {
-    if (!window || !window.document) return;
-    
     try {
+      if (!window || !window.document) return;
+      
       // Remove UI components
       this.removeMenuItems(window);
-      this.removeSidebar(window);
+      // Uncomment when ready to implement: this.removeSidebar(window);
     } catch (e) {
       Zotero.debug("PicoZot: Error removing from window: " + e);
     }
@@ -85,9 +92,9 @@ var PicoZot = {
   
   // Add menu items to the Zotero UI
   addMenuItems: function(window) {
-    if (!window || !window.document) return;
-    
     try {
+      if (!window || !window.document) return;
+      
       // Add to Tools menu
       var toolsMenu = window.document.getElementById('menu_ToolsPopup');
       if (toolsMenu) {
@@ -110,9 +117,9 @@ var PicoZot = {
   
   // Remove menu items from the Zotero UI
   removeMenuItems: function(window) {
-    if (!window || !window.document) return;
-    
     try {
+      if (!window || !window.document) return;
+      
       // Remove from Tools menu
       var menuItem = window.document.getElementById('picozot-menu');
       if (menuItem) menuItem.remove();
@@ -136,7 +143,13 @@ var PicoZot = {
   
   // Show a dialog
   showDialog: function(type, options = {}) {
+    try {
+      Zotero.debug("PicoZot: Showing dialog type: " + type);
     // Implement dialog display
+      alert("PicoZot dialog: " + type);
+    } catch (e) {
+      Zotero.debug("PicoZot: Error showing dialog: " + e);
+    }
   },
   
   // Main function to run once Zotero is ready
@@ -146,13 +159,25 @@ var PicoZot = {
       // Set up event listeners
       // Load configuration
       Zotero.debug("PicoZot main function completed successfully");
+      return true;
     } catch (e) {
       Zotero.debug("PicoZot: Error in main function: " + e);
+      return false;
     }
   }
 };
 
-// Make sure the object is global
+// Make the PicoZot object global
 if (typeof window != 'undefined') {
   window.PicoZot = PicoZot;
+}
+
+// Also make it available in the global scope
+if (typeof globalThis !== 'undefined') {
+  globalThis.PicoZot = PicoZot;
+}
+
+// Mozilla-specific export for compatibility
+if (typeof Components !== 'undefined') {
+  this.PicoZot = PicoZot;
 }

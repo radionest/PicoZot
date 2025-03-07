@@ -11,20 +11,30 @@ function install() {
 async function startup({ id, version, rootURI }) {
   log("Starting PicoZot");
 
-  // Register resource protocol
-  Services.scriptloader.loadSubScript(rootURI + "index.js");
-  
-  // Initialize the plugin
-  if (typeof PicoZot !== 'undefined' && PicoZot.init) {
-    PicoZot.init({ id, version, rootURI });
-    if (PicoZot.addToAllWindows) {
-      PicoZot.addToAllWindows();
+  try {
+    // Load the main script
+    Services.scriptloader.loadSubScript(
+      rootURI + "index.js",
+      null,
+      "UTF-8"
+    );
+    
+    // Initialize the plugin
+    if (typeof PicoZot !== 'undefined' && PicoZot.init) {
+      PicoZot.init({ id, version, rootURI });
+      
+      if (PicoZot.addToAllWindows) {
+        PicoZot.addToAllWindows();
+      }
+      
+      if (PicoZot.main) {
+        await PicoZot.main();
+      }
+    } else {
+      log("Error: PicoZot global object not found after loading index.js");
     }
-    if (PicoZot.main) {
-      await PicoZot.main();
-    }
-  } else {
-    log("Error: PicoZot global object not found after loading index.js");
+  } catch (e) {
+    log("Error in PicoZot startup: " + e);
   }
 }
 
